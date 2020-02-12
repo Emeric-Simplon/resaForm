@@ -29,6 +29,7 @@ form {
 .buttonAndTotal {
     display: flex;
     margin: auto;
+    justify-content: space-between;
     background-color: rgb(204, 131, 36);
     margin-bottom: 15px;
     height: 50px;
@@ -37,4 +38,7 @@ form {
 }
 .mat-ripple {
     margin-bottom: 15px;
+}
+.totalPrice {
+    margin: 15px;
 }
