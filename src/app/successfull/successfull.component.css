@@ -1,0 +1,35 @@
+
+button {
+    display: inherit;
+    padding: 10px 30px;
+    border: 2px solid #ffc982;
+    background-color: #feac3f;
+    border-radius: 5px;
+    animation-name: fx_scrollbg_btton;
+    animation-duration: 5s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    background-image: url(https://coolncamp.com/RESSOURCES/IMAGES/bg_orange_stripes.png);
+  }
+  
+  @keyframes fx_scrollbg_btton {
+    0% {
+      background-position: 0 50%;
+    }
+    100% {
+      background-position: 100% 80%;
+    }
+  }
+  button:hover {
+    border: 2px solid #feac3f;
+    background-color: #4ec3b4;
+    color: #fff;
+    transition: all 0.5s;
+    box-shadow: 0 0 2vh rgba(255, 255, 255, 0.5);
+  }
+  
+  button:hover:before {
+    opacity: 1;
+    transform: translateY(0) scaleX(1);
+    transition: transform 0.5s, opacity 0.2s ease-in-out;
+  }
