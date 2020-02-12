@@ -1,3 +1,4 @@
-<p *ngIf="cautionIsEnble">Attention il ne reste que: {{places}}</p>
-<p>Le prix par semaine est actuellement de: {{ price }}</p>
+<p class="caution" *ngIf="cautionIsEnble">Emplacement(s) restant: {{places}}</p>
+<p>Le prix par semaine est actuellement de: {{ price }}€</p>
+<!-- Formulaire enfant qui récupère le prix d'un emplacement -->
 <app-form [price]="price"></app-form>

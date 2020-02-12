@@ -1,47 +1,105 @@
+<div class="formHeader">
+  <h3>Formulaire de réservation</h3>
+  <p>
+    <strong>Important:</strong> nous ne prenons pas les réservations au delà de
+    4 semaines. De plus, la location se fait par semaine complète
+  </p>
+</div>
+
 <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
   <mat-form-field>
     <mat-label>Nom</mat-label>
-    <input matInput type="text" formControlName="lastname" maxlength="50" placeholder="Ex. Dupont" required/>
+    <input
+      matInput
+      type="text"
+      formControlName="lastname"
+      placeholder="Ex. Dupont"
+      required
+    />
   </mat-form-field>
 
-  <mat-form-field >
-    <mat-label>Prénom</mat-label>
-    <input matInput type="text"  formControlName="firstname" maxlength="50" placeholder="Ex. Jean" required/>
-  </mat-form-field>
-
-  <mat-form-field >
-    <mat-label>Adresse</mat-label>
-    <input matInput  type="text" formControlName="adress" placeholder="Ex. 10 rue jean jaures" required/>
-  </mat-form-field>
-
-  <mat-form-field >
-    <mat-label>Code Postal</mat-label>
-    <input matInput type="number" maxlength="5" minlength="7" formControlName="zip" placeholder="Ex. 31000" required/>
-  </mat-form-field>
-
-  <mat-form-field >
-    <mat-label>Téléphone</mat-label>
-    <input matInput formControlName="phone" type="tel" placeholder="Ex. 0000000000" required/>
-  </mat-form-field>
-  <p>Sélection des dates</p>
-  <p>Attention nous ne prenons pas les réservations au delà de 4 semaines</p>
-  <p>La location se fait par semaine complète</p>
   <mat-form-field>
-    <input matInput [matDatepicker]="picker1" formControlName="date" placeholder="Date d'arrivé" [min]="minDate" [max]="maxDate" >
+    <mat-label>Prénom</mat-label>
+    <input
+      matInput
+      type="text"
+      formControlName="firstname"
+      placeholder="Ex. Jean"
+      required
+    />
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Adresse</mat-label>
+    <input
+      matInput
+      type="text"
+      formControlName="adress"
+      placeholder="Ex. 10 rue jean jaures"
+      required
+    />
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Code Postal</mat-label>
+    <input
+      matInput
+      type="number"
+      maxlength="5"
+      minlength="7"
+      formControlName="zip"
+      on-focusout="getCity()"
+      placeholder="Ex. 31000"
+      required
+    />
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Ville</mat-label>
+    <input
+      matInput
+      type="text"
+      value="{{ city$ }}"
+      formControlName="city"
+      placeholder="Ex. Toulouse"
+      required
+    />
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Téléphone</mat-label>
+    <input
+      matInput
+      formControlName="phone"
+      type="tel"
+      placeholder="Ex. 0000000000"
+      required
+    />
+  </mat-form-field>
+
+  <mat-form-field>
+    <input
+      matInput
+      [matDatepicker]="picker1"
+      formControlName="date"
+      placeholder="Date d'arrivé *"
+      [min]="minDate"
+      [max]="maxDate"
+    />
     <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
     <mat-datepicker #picker1></mat-datepicker>
   </mat-form-field>
 
   <mat-form-field>
-    <mat-label>Nombre de semaine(s)</mat-label>
-    <mat-select formControlName="numberOfWeeks" >
+    <mat-label>Nombre de semaine(s) *</mat-label>
+    <mat-select formControlName="numberOfWeeks">
       <mat-option *ngFor="let o of maxWeeksOptions" [value]="o">
-          {{ o }}
+        {{ o }}
       </mat-option>
     </mat-select>
   </mat-form-field>
-
-  <button  mat-button type="submit">Submit</button>
-
+  <div class="buttonAndTotal">
+    <button mat-button type="submit">Envoyer</button>
+    <p class="totalPrice" *ngIf="totalIsEnable">Total: {{ totalPrice }}€</p>
+  </div>
 </form>
-<p *ngIf="totalIsEnable">Le coût total de votre séjour sera de : {{totalPrice}}</p>
